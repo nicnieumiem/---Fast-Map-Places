@@ -15,6 +15,7 @@
 #define MIN_ZOOM 0.2
 #define MAX_ZOOM 5.0
 #define MAX_RECENT_PHOTOS 20
+#define IPAD_PORTRAIT_ORIENTATION_BAR_BUTTON_LABEL @"Display UI"
 
 @interface PhotoViewController () <UIScrollViewDelegate, UISplitViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *downloadIndicator;
@@ -116,13 +117,13 @@
 
 -(void)viewWillLayoutSubviews {
     if(self.imageView.image) {
-        float zoomScaleAfterOrientationChangle = self.view.bounds.size.width / self.imageView.image.size.width;
-        [self.scrollView setZoomScale:zoomScaleAfterOrientationChangle];
+        float zoomScaleAfterOrientationChange = self.view.bounds.size.width / self.imageView.image.size.width;
+        [self.scrollView setZoomScale:zoomScaleAfterOrientationChange];
     }    
 }
 
 -(void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc {
-    barButtonItem.title = @"Display UI";
+    barButtonItem.title = IPAD_PORTRAIT_ORIENTATION_BAR_BUTTON_LABEL;
     NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
     [toolbarItems insertObject:barButtonItem atIndex:0];
     self.toolbar.items = toolbarItems;

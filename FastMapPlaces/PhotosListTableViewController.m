@@ -91,7 +91,9 @@
         [segue.destinationViewController setPhoto:photo];
     }
     else if([[segue destinationViewController] respondsToSelector:@selector(setAnnotations:)]) {
-        [[segue destinationViewController] setAnnotations:[self mapAnnotations]];
+        if(self.photos) {
+            [[segue destinationViewController] setAnnotations:[self mapAnnotations]];
+        }
         [[segue destinationViewController] setActivityIndicator:self.activityIndicator];
     }
 }

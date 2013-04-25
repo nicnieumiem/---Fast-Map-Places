@@ -170,7 +170,9 @@
     }
     else if([[segue destinationViewController] respondsToSelector:@selector(setAnnotations:)]) {
         // MapViewController
-        [[segue destinationViewController] setAnnotations:[self mapAnnotations]];
+        if(self.places) {
+            [[segue destinationViewController] setAnnotations:[self mapAnnotations]];
+        }
         [[segue destinationViewController] setActivityIndicator:self.tabBarActivityIndicator];
     }
 }
